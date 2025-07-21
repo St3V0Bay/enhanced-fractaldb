@@ -1,0 +1,95 @@
+{
+  "name": "Enhanced FractalDB Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "python.formatting.blackArgs": ["--line-length=88"],
+        "python.sortImports.args": ["--profile", "black"],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      }
+    }
+  },
+
+  "onCreateCommand": "bash .devcontainer/setup.sh",
+
+  "postCreateCommand": [
+    "pip install --upgrade pip",
+    "pip install -r requirements.txt",
+    "python -c \"import torch; print(f'PyTorch version: {torch.__version__}')\"",
+    "python -c \"import torchvision; print(f'Torchvision version: {torchvision.__version__}')\"",
+    "echo 'Environment setup complete! You can now run: python demo_enhanced_functions.py'"
+  ],
+
+  "postStartCommand": "echo 'Welcome to Enhanced FractalDB Development Environment!'",
+
+  "forwardPorts": [8000, 8888, 6006],
+
+  "portsAttributes": {
+    "8000": {
+      "label": "Demo Server",
+      "onAutoForward": "notify"
+    },
+    "8888": {
+      "label": "Jupyter Lab",
+      "onAutoForward": "notify"
+    },
+    "6006": {
+      "label": "TensorBoard",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "remoteUser": "vscode",
+  
+  "containerEnv": {
+    "PYTHONUNBUFFERED": "1",
+    "DISPLAY": ":99",
+    "MPLBACKEND": "Agg"
+  },
+
+  "mounts": [
+    "source=enhanced-fractaldb-workspace,target=/workspace,type=volume"
+  ],
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "shutdownAction": "stopContainer"
+}
