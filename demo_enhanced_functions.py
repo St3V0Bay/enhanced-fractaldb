@@ -30,18 +30,18 @@ def demo_spherical_harmonics():
     if not os.path.exists(demo_dir):
         os.makedirs(demo_dir)
 
-    # Define 10 diverse parameter sets for spherical harmonics
+    # Define 10 diverse parameter sets for spherical harmonics (mix of pointcloud and surface)
     spherical_configs = [
-        {"l_max": 2, "resolution": 60, "radius": 0.8, "view": (0.2, 0.5), "proj": "orthographic", "render": "point"},
-        {"l_max": 4, "resolution": 80, "radius": 1.2, "view": (0.8, 1.2), "proj": "perspective", "render": "patch"},
-        {"l_max": 6, "resolution": 100, "radius": 1.5, "view": (0.4, 2.1), "proj": "orthographic", "render": "point"},
-        {"l_max": 3, "resolution": 120, "radius": 0.6, "view": (1.1, 0.8), "proj": "perspective", "render": "patch"},
-        {"l_max": 8, "resolution": 90, "radius": 2.0, "view": (0.6, 3.0), "proj": "orthographic", "render": "point"},
-        {"l_max": 5, "resolution": 140, "radius": 1.8, "view": (0.9, 1.7), "proj": "perspective", "render": "patch"},
-        {"l_max": 7, "resolution": 70, "radius": 1.0, "view": (0.3, 2.5), "proj": "orthographic", "render": "point"},
-        {"l_max": 9, "resolution": 110, "radius": 1.4, "view": (1.2, 0.4), "proj": "perspective", "render": "patch"},
-        {"l_max": 4, "resolution": 160, "radius": 0.9, "view": (0.7, 2.8), "proj": "orthographic", "render": "point"},
-        {"l_max": 6, "resolution": 85, "radius": 2.2, "view": (0.5, 1.9), "proj": "perspective", "render": "patch"},
+        {"l_max": 2, "resolution": 60, "radius": 0.8, "view": (0.2, 0.5), "proj": "orthographic", "render": "point", "style": "pointcloud"},
+        {"l_max": 4, "resolution": 80, "radius": 1.2, "view": (0.8, 1.2), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"l_max": 6, "resolution": 100, "radius": 1.5, "view": (0.4, 2.1), "proj": "orthographic", "render": "point", "style": "pointcloud"},
+        {"l_max": 3, "resolution": 120, "radius": 0.6, "view": (1.1, 0.8), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"l_max": 8, "resolution": 90, "radius": 2.0, "view": (0.6, 3.0), "proj": "orthographic", "render": "point", "style": "surface"},
+        {"l_max": 5, "resolution": 140, "radius": 1.8, "view": (0.9, 1.7), "proj": "perspective", "render": "patch", "style": "pointcloud"},
+        {"l_max": 7, "resolution": 70, "radius": 1.0, "view": (0.3, 2.5), "proj": "orthographic", "render": "point", "style": "surface"},
+        {"l_max": 9, "resolution": 110, "radius": 1.4, "view": (1.2, 0.4), "proj": "perspective", "render": "patch", "style": "pointcloud"},
+        {"l_max": 4, "resolution": 160, "radius": 0.9, "view": (0.7, 2.8), "proj": "orthographic", "render": "point", "style": "surface"},
+        {"l_max": 6, "resolution": 85, "radius": 2.2, "view": (0.5, 1.9), "proj": "perspective", "render": "patch", "style": "surface"},
     ]
 
     for i, config in enumerate(spherical_configs):
@@ -67,6 +67,7 @@ def demo_spherical_harmonics():
             view_angle=config["view"],
             count=0,
             render_type=config["render"],
+            rendering_style=config["style"],
             white_background=True
         )
 
@@ -78,18 +79,18 @@ def demo_hyperbolic_functions():
     if not os.path.exists(demo_dir):
         os.makedirs(demo_dir)
 
-    # Define 10 diverse hyperbolic function configurations
+    # Define 10 diverse hyperbolic function configurations (mix of pointcloud and surface)
     hyperbolic_configs = [
-        {"type": "sinh", "u_range": (-2, 2), "v_range": (-2, 2), "resolution": 80, "scale": 0.8, "view": (0.3, 0.7), "proj": "orthographic", "render": "point"},
-        {"type": "cosh", "u_range": (-1.5, 1.5), "v_range": (-1.5, 1.5), "resolution": 100, "scale": 1.2, "view": (0.8, 1.5), "proj": "perspective", "render": "patch"},
-        {"type": "tanh", "u_range": (-3, 3), "v_range": (-3, 3), "resolution": 120, "scale": 1.5, "view": (0.5, 2.1), "proj": "orthographic", "render": "point"},
-        {"type": "hyperboloid", "u_range": (-2.5, 2.5), "v_range": (-np.pi, np.pi), "resolution": 90, "scale": 0.6, "view": (1.0, 0.4), "proj": "perspective", "render": "patch"},
-        {"type": "sinh", "u_range": (-1, 1), "v_range": (-1, 1), "resolution": 140, "scale": 2.0, "view": (0.2, 2.8), "proj": "orthographic", "render": "point"},
-        {"type": "cosh", "u_range": (-2.8, 2.8), "v_range": (-2.8, 2.8), "resolution": 70, "scale": 1.8, "view": (0.9, 1.1), "proj": "perspective", "render": "patch"},
-        {"type": "tanh", "u_range": (-4, 4), "v_range": (-4, 4), "resolution": 110, "scale": 1.0, "view": (0.6, 2.5), "proj": "orthographic", "render": "point"},
-        {"type": "hyperboloid", "u_range": (-1.8, 1.8), "v_range": (-2*np.pi, 2*np.pi), "resolution": 130, "scale": 1.4, "view": (1.2, 0.8), "proj": "perspective", "render": "patch"},
-        {"type": "sinh", "u_range": (-2.2, 2.2), "v_range": (-2.2, 2.2), "resolution": 95, "scale": 0.9, "view": (0.4, 3.0), "proj": "orthographic", "render": "point"},
-        {"type": "cosh", "u_range": (-1.2, 1.2), "v_range": (-1.2, 1.2), "resolution": 155, "scale": 2.2, "view": (0.7, 1.8), "proj": "perspective", "render": "patch"},
+        {"type": "sinh", "u_range": (-2, 2), "v_range": (-2, 2), "resolution": 80, "scale": 0.8, "view": (0.3, 0.7), "proj": "orthographic", "render": "point", "style": "pointcloud"},
+        {"type": "cosh", "u_range": (-1.5, 1.5), "v_range": (-1.5, 1.5), "resolution": 100, "scale": 1.2, "view": (0.8, 1.5), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"type": "tanh", "u_range": (-3, 3), "v_range": (-3, 3), "resolution": 120, "scale": 1.5, "view": (0.5, 2.1), "proj": "orthographic", "render": "point", "style": "surface"},
+        {"type": "hyperboloid", "u_range": (-2.5, 2.5), "v_range": (-np.pi, np.pi), "resolution": 90, "scale": 0.6, "view": (1.0, 0.4), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"type": "sinh", "u_range": (-1, 1), "v_range": (-1, 1), "resolution": 140, "scale": 2.0, "view": (0.2, 2.8), "proj": "orthographic", "render": "point", "style": "pointcloud"},
+        {"type": "cosh", "u_range": (-2.8, 2.8), "v_range": (-2.8, 2.8), "resolution": 70, "scale": 1.8, "view": (0.9, 1.1), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"type": "tanh", "u_range": (-4, 4), "v_range": (-4, 4), "resolution": 110, "scale": 1.0, "view": (0.6, 2.5), "proj": "orthographic", "render": "point", "style": "pointcloud"},
+        {"type": "hyperboloid", "u_range": (-1.8, 1.8), "v_range": (-2*np.pi, 2*np.pi), "resolution": 130, "scale": 1.4, "view": (1.2, 0.8), "proj": "perspective", "render": "patch", "style": "surface"},
+        {"type": "sinh", "u_range": (-2.2, 2.2), "v_range": (-2.2, 2.2), "resolution": 95, "scale": 0.9, "view": (0.4, 3.0), "proj": "orthographic", "render": "point", "style": "surface"},
+        {"type": "cosh", "u_range": (-1.2, 1.2), "v_range": (-1.2, 1.2), "resolution": 155, "scale": 2.2, "view": (0.7, 1.8), "proj": "perspective", "render": "patch", "style": "pointcloud"},
     ]
 
     for i, config in enumerate(hyperbolic_configs):
@@ -117,6 +118,7 @@ def demo_hyperbolic_functions():
             view_angle=config["view"],
             count=0,
             render_type=config["render"],
+            rendering_style=config["style"],
             white_background=True
         )
 

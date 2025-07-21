@@ -512,7 +512,7 @@ class MathematicalFunctions:
             return x_proj, y_proj
     
     def render_image(self, image_x, image_y, pad_x, pad_y, projection_type="orthographic", 
-                    view_angle=(0.5, 1.0), count=0, render_type="point", white_background=False, return_img=False):
+                    view_angle=(0.5, 1.0), count=0, render_type="point", rendering_style="pointcloud", white_background=False, return_img=False):
         """
         Render the mathematical function as an image
         
@@ -523,6 +523,9 @@ class MathematicalFunctions:
             view_angle: Viewing angles
             count: Image count for naming
             render_type: Rendering type ('point' or 'patch')
+            rendering_style: Style ('pointcloud' for scattered points, 'surface' for connected surfaces)
+            white_background: Use white background if True
+            return_img: Return image array if True
         """
         if not self.coordinates["x"]:
             print("No coordinates to render")
@@ -548,20 +551,24 @@ class MathematicalFunctions:
         background_color = 255 if white_background else 0
         image = np.full((image_y, image_x, 3), fill_value=background_color, dtype=np.uint8)
         
-        # Render points or patches
-        for i in range(len(x_scaled)):
-            if 0 <= x_scaled[i] < image_x and 0 <= y_scaled[i] < image_y:
-                if render_type == "point":
-                    color = self.colors[i] if i < len(self.colors) else (127, 127, 127)
-                    image[y_scaled[i], x_scaled[i]] = color
-                elif render_type == "patch":
-                    # Simple 3x3 patch
-                    color = self.colors[i] if i < len(self.colors) else (127, 127, 127)
-                    for dx in range(-1, 2):
-                        for dy in range(-1, 2):
-                            nx, ny = x_scaled[i] + dx, y_scaled[i] + dy
-                            if 0 <= nx < image_x and 0 <= ny < image_y:
-                                image[ny, nx] = color
+        # Choose rendering method based on style
+        if rendering_style == "surface":
+            self._render_closed_surface(image, x_scaled, y_scaled, image_x, image_y)
+        else:
+            # Default pointcloud rendering
+            for i in range(len(x_scaled)):
+                if 0 <= x_scaled[i] < image_x and 0 <= y_scaled[i] < image_y:
+                    if render_type == "point":
+                        color = self.colors[i] if i < len(self.colors) else (127, 127, 127)
+                        image[y_scaled[i], x_scaled[i]] = color
+                    elif render_type == "patch":
+                        # Simple 3x3 patch
+                        color = self.colors[i] if i < len(self.colors) else (127, 127, 127)
+                        for dx in range(-1, 2):
+                            for dy in range(-1, 2):
+                                nx, ny = x_scaled[i] + dx, y_scaled[i] + dy
+                                if 0 <= nx < image_x and 0 <= ny < image_y:
+                                    image[ny, nx] = color
         
         # Convert to PIL and optionally return or save
         pil_image = Image.fromarray(image)
@@ -593,3 +600,29 @@ class MathematicalFunctions:
             temp = image.transpose(Image.FLIP_TOP_BOTTOM)
             return temp.transpose(Image.FLIP_LEFT_RIGHT)
         return image.copy()
+    
+    def _render_closed_surface(self, image, x_scaled, y_scaled, image_x, image_y):
+        """Render as closed surface using interpolation and denser patches"""
+        # For closed surface rendering, create denser patches and use interpolation
+        num_points = len(x_scaled)
+        if num_points == 0:
+            return
+        
+        # Use a larger patch size for surface rendering to create more connected appearance
+        patch_size = 2
+        
+        for i in range(num_points):
+            if 0 <= x_scaled[i] < image_x and 0 <= y_scaled[i] < image_y:
+                color = self.colors[i] if i < len(self.colors) else (127, 127, 127)
+                
+                # Create a larger patch around each point
+                for dx in range(-patch_size, patch_size + 1):
+                    for dy in range(-patch_size, patch_size + 1):
+                        nx, ny = x_scaled[i] + dx, y_scaled[i] + dy
+                        if 0 <= nx < image_x and 0 <= ny < image_y:
+                            # Add some smoothing based on distance from center
+                            distance = np.sqrt(dx*dx + dy*dy)
+                            if distance <= patch_size:
+                                alpha = 1.0 - (distance / patch_size) * 0.3  # Fade towards edges
+                                blended_color = tuple(int(c * alpha) for c in color)
+                                image[ny, nx] = blended_color

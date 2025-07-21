@@ -15,22 +15,26 @@ Equation2Model introduces advanced mathematical models that go beyond traditiona
 Here are examples of the diverse mathematical structures generated:
 
 ### Spherical Harmonics
-Mathematical basis: Y_l^m(θ, φ) - solutions to Laplace equation on sphere
+Mathematical basis: Y_l^m(θ, φ) - solutions to Laplace equation on sphere  
+*Available in both point cloud and closed surface rendering styles*
 
 <img src="demo_output/spherical_montage.png" alt="Spherical Harmonics Examples" width="100%">
 
 ### Hyperbolic Functions  
-Non-Euclidean geometry with exponential growth patterns
+Non-Euclidean geometry with exponential growth patterns  
+*Available in both point cloud and closed surface rendering styles*
 
 <img src="demo_output/hyperbolic_montage.png" alt="Hyperbolic Functions Examples" width="100%">
 
 ### Parametric Curves
-Multi-dimensional periodic and knotted structures
+Multi-dimensional periodic and knotted structures  
+*Rendered as both discrete points and connected curves*
 
 <img src="demo_output/curves_montage.png" alt="Parametric Curves Examples" width="100%">
 
 ### Complex Manifolds
-Topologically complex self-intersecting surfaces
+Topologically complex self-intersecting surfaces  
+*Supports both wireframe and surface rendering modes*
 
 <img src="demo_output/manifold_montage.png" alt="Complex Manifolds Examples" width="100%">
 
@@ -75,6 +79,31 @@ for batch_images, batch_labels in dataloader:
 - **Infinite diversity**: Random parameters ensure unique samples
 - **Memory efficient**: No disk storage required
 - **Scalable**: Generate any number of samples on demand
+
+### Rendering Styles
+
+Equation2Model supports multiple rendering styles for enhanced visual diversity:
+
+```python
+# Point cloud rendering (discrete points)
+math_func.render_image(
+    image_x=512, image_y=512, pad_x=15, pad_y=15,
+    rendering_style="pointcloud",  # Scatter plot style
+    render_type="point"  # Individual pixels
+)
+
+# Closed surface rendering (connected surfaces)
+math_func.render_image(
+    image_x=512, image_y=512, pad_x=15, pad_y=15,
+    rendering_style="surface",  # Filled surface style
+    render_type="patch"  # Connected patches
+)
+```
+
+**Rendering Options:**
+- **Point Cloud**: Scattered discrete points showing mathematical structure
+- **Closed Surface**: Connected patches creating filled surfaces
+- **Mixed Styles**: Different mathematical functions can use different rendering approaches
 
 ## 🧮 Mathematical Models Overview
 
