@@ -1,3 +1,117 @@
+# Enhanced FractalDB
+
+## 🌟 New Features
+
+This enhanced version of FractalDB introduces advanced mathematical models that go beyond traditional fractals, providing richer geometric diversity for neural network pre-training:
+
+- **🔮 Spherical Harmonics**: Complex spherical patterns with radial variations
+- **📐 Hyperbolic Functions**: Non-Euclidean geometry surfaces (sinh, cosh, tanh, hyperboloids)
+- **🌀 N-Dimensional Parametric Curves**: Lissajous curves, rose curves, spirals, torus knots
+- **🎭 Complex Manifolds**: Non-orientable surfaces (Klein bottle, Möbius strip, Boy's surface)
+- **⚡ On-the-Fly Dataset**: Direct tensor generation without file I/O overhead
+
+## 📸 Exemplary Generated Images
+
+Here are examples of the diverse mathematical structures generated:
+
+### Spherical Harmonics
+Mathematical basis: Y_l^m(θ, φ) - solutions to Laplace equation on sphere
+
+![Spherical Harmonic](demo_output/spherical_diverse_01_00_count_0_flip0.png)
+
+### Hyperbolic Functions  
+Non-Euclidean geometry with exponential growth patterns
+
+![Hyperbolic Function](demo_output/hyperbolic_diverse_01_00_count_0_flip0.png)
+
+### Parametric Curves
+Multi-dimensional periodic and knotted structures
+
+![Parametric Curve](demo_output/curves_diverse_01_00_count_0_flip0.png)
+
+### Complex Manifolds
+Topologically complex self-intersecting surfaces
+
+![Complex Manifold](demo_output/manifold_diverse_01_00_count_0_flip0.png)
+
+## 🚀 Quick Start
+
+### Generate Demo Images
+
+Run the enhanced demo to see all mathematical models in action:
+
+```bash
+python demo_enhanced_functions.py
+```
+
+This generates 10 diverse images per class with varying parameters, saved in `demo_output/`.
+
+### On-the-Fly Data Generation
+
+The enhanced FractalDB supports efficient on-the-fly generation during training:
+
+```python
+from fractal_dataset import FractalDataset
+from torch.utils.data import DataLoader
+
+# Create dataset with mathematical function classes
+dataset = FractalDataset(
+    size=224,  # Image size
+    classes=["spherical_harmonics", "hyperbolic", "curves", "manifold"],
+    samples_per_class=1000
+)
+
+# Use with PyTorch DataLoader
+dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+
+for batch_images, batch_labels in dataloader:
+    # batch_images: tensor of shape [32, 3, 224, 224]
+    # batch_labels: tensor of class indices
+    pass
+```
+
+**Benefits:**
+- **Zero file I/O**: Images generated directly as tensors
+- **Infinite diversity**: Random parameters ensure unique samples
+- **Memory efficient**: No disk storage required
+- **Scalable**: Generate any number of samples on demand
+
+## 🧮 Mathematical Models Overview
+
+### 1. Spherical Harmonics
+- **Equation**: Y_l^m(θ, φ) with degree l and order m
+- **Applications**: Quantum mechanics, computer graphics, geophysics  
+- **Parameters**: Degree (l=1-10), order (m), resolution, radius modulation
+- **Characteristics**: Symmetric patterns with complex radial structures
+
+### 2. Hyperbolic Functions
+- **Types**: sinh, cosh, tanh surfaces, hyperboloids
+- **Mathematical basis**: Hyperbolic trigonometry, Minkowski space
+- **Applications**: Relativity theory, neural network activation functions
+- **Characteristics**: Saddle surfaces, exponential growth, non-Euclidean
+
+### 3. N-Dimensional Parametric Curves
+- **Types**: Lissajous, rose curves, Archimedean spirals, torus knots
+- **Parameters**: Frequency ratios, amplitudes, phases, winding numbers
+- **Applications**: Oscillation analysis, robotics, knot theory
+- **Characteristics**: Periodic, symmetric, topologically complex
+
+### 4. Complex Manifolds
+- **Surfaces**: Klein bottle, Möbius strip, Boy's surface  
+- **Properties**: Non-orientable, self-intersecting topology
+- **Applications**: Differential topology, abstract algebra
+- **Characteristics**: Twisted, immersed surfaces in 3D space
+
+## 🔬 Benefits for Neural Network Training
+
+- **Enhanced Geometric Diversity**: Beyond traditional fractals
+- **Rich Mathematical Structure**: Inherent symmetries and patterns  
+- **Scalable Complexity**: Parameter-controlled difficulty levels
+- **Natural Augmentation**: Multiple viewing angles and transformations
+- **Theoretical Foundation**: Well-understood mathematical properties
+
+---
+
 # FractalDB
 
 ## Summary
