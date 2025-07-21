@@ -17,22 +17,22 @@ Here are examples of the diverse mathematical structures generated:
 ### Spherical Harmonics
 Mathematical basis: Y_l^m(θ, φ) - solutions to Laplace equation on sphere
 
-![Spherical Harmonic](demo_output/spherical_diverse_01_00_count_0_flip0.png)
+<img src="demo_output/spherical_montage.png" alt="Spherical Harmonics Examples" width="100%">
 
 ### Hyperbolic Functions  
 Non-Euclidean geometry with exponential growth patterns
 
-![Hyperbolic Function](demo_output/hyperbolic_diverse_01_00_count_0_flip0.png)
+<img src="demo_output/hyperbolic_montage.png" alt="Hyperbolic Functions Examples" width="100%">
 
 ### Parametric Curves
 Multi-dimensional periodic and knotted structures
 
-![Parametric Curve](demo_output/curves_diverse_01_00_count_0_flip0.png)
+<img src="demo_output/curves_montage.png" alt="Parametric Curves Examples" width="100%">
 
 ### Complex Manifolds
 Topologically complex self-intersecting surfaces
 
-![Complex Manifold](demo_output/manifold_diverse_01_00_count_0_flip0.png)
+<img src="demo_output/manifold_montage.png" alt="Complex Manifolds Examples" width="100%">
 
 ## 🚀 Quick Start
 
