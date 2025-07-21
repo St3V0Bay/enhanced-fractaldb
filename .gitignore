@@ -9,6 +9,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Demo output images (regenerated on demand)
+demo_output/**/*.png
+!demo_output/*montage.png
+
 # Distribution / packaging
 .Python
 build/
