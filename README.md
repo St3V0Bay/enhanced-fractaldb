@@ -1,8 +1,8 @@
-# Enhanced FractalDB
+# Equation2Model
 
 ## 🌟 New Features
 
-This enhanced version of FractalDB introduces advanced mathematical models that go beyond traditional fractals, providing richer geometric diversity for neural network pre-training:
+Equation2Model introduces advanced mathematical models that go beyond traditional fractals, providing richer geometric diversity for neural network pre-training:
 
 - **🔮 Spherical Harmonics**: Complex spherical patterns with radial variations
 - **📐 Hyperbolic Functions**: Non-Euclidean geometry surfaces (sinh, cosh, tanh, hyperboloids)
@@ -48,7 +48,7 @@ This generates 10 diverse images per class with varying parameters, saved in `de
 
 ### On-the-Fly Data Generation
 
-The enhanced FractalDB supports efficient on-the-fly generation during training:
+Equation2Model supports efficient on-the-fly generation during training:
 
 ```python
 from fractal_dataset import FractalDataset
@@ -112,7 +112,7 @@ for batch_images, batch_labels in dataloader:
 
 ---
 
-# FractalDB
+# Original FractalDB
 
 ## Summary
 

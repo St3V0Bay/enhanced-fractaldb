@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Comprehensive Demonstration of Enhanced Mathematical Functions for FractalDB
+Comprehensive Demonstration of Enhanced Mathematical Functions for Equation2Model
 This script generates 10 diverse images for each class of mathematical functions:
 - Spherical Harmonics (10 variations)
 - Hyperbolic Functions (10 variations)
@@ -10,7 +10,7 @@ This script generates 10 diverse images for each class of mathematical functions
 
 Each set shows maximum diversity in shape, form, and color.
 
-@author: Enhanced FractalDB Implementation
+@author: Equation2Model Implementation
 """
 
 import os
@@ -305,7 +305,7 @@ def demo_legacy_fractals():
 
 def create_comparison_summary():
     """Create a summary of the different function types"""
-    print("\n=== Enhanced FractalDB Mathematical Functions Summary ===\n")
+    print("\n=== Equation2Model Mathematical Functions Summary ===\n")
 
     print("1. SPHERICAL HARMONICS")
     print("   - Mathematical basis: Y_l^m(θ, φ) - solutions to Laplace equation on sphere")
@@ -346,7 +346,7 @@ def create_comparison_summary():
     print("• Theoretical foundation for understanding learned representations")
 
 if __name__ == "__main__":
-    print("Enhanced FractalDB - Mathematical Functions Demonstration")
+    print("Equation2Model - Mathematical Functions Demonstration")
     print("=" * 55)
 
     try:

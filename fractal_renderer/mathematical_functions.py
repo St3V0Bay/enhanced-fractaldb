@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Higher-dimensional mathematical functions for enhanced FractalDB
+Higher-dimensional mathematical functions for Equation2Model
 Implements spherical harmonics, hyperbolic functions, and n-dimensional curves
 
-@author: Enhanced FractalDB Implementation
+@author: Equation2Model Implementation
 """
 
 import os
