@@ -9,9 +9,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Demo output images (regenerated on demand)
-demo_output/**/*.png
-!demo_output/*montage.png
+# PNG images (generated on demand)
+*.png
+
+# Keep only montages used in README
+!demo_output/spherical_montage.png
+!demo_output/hyperbolic_montage.png
+!demo_output/curves_montage.png
+!demo_output/manifold_montage.png
 
 # Distribution / packaging
 .Python
